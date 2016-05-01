@@ -1,0 +1,18 @@
+main
+
+  div#stopwatch div div
+    +span-columns(3)
+    +media($tablet)
+      +span-columns(2)
+      &:first-child
+        +shift(2)
+
+  .details
+    +span-columns(12)
+    +shift(0)
+    +media($tablet)
+      +span-columns(8)
+      +shift(2)
+  
+  .outer
+    +clearfix

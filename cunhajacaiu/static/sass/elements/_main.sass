@@ -1,0 +1,32 @@
+main
+
+  padding: modular-scale(0) 0
+  +media($tablet)
+    padding: modular-scale(1) 0
+
+  p
+    font-size: modular-scale(0)
+    +media($tablet)
+      font-size: modular-scale(1)
+  
+  span
+    display: block
+
+  div#stopwatch div 
+    font-weight: $bold_weight
+    font-size: modular-scale(2)
+    line-height: 1
+    text-align: center
+    +media($tablet)
+      font-size: modular-scale(3)
+
+  .details, div#stopwatch span
+    font-weight: $normal_weight
+    font-size: modular-scale(-1)
+    +media($tablet)
+      font-size: modular-scale(0)
+
+  .details
+    margin-top: modular-scale(0)
+    +media($tablet)
+      margin-top: modular-scale(1)

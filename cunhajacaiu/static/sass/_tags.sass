@@ -1,0 +1,42 @@
+body, html
+  font-family: $font_family
+  font-weight: $normal_weight
+  margin: 0
+  padding: 0
+
+header, main
+  text-align: center
+  text-transform: uppercase
+
+header
+  +flex-grow(0)
+  background-color: $header_background
+  color: $header_text
+
+main
+  +flex-grow(1)
+  background-color: $main_background
+  color: $main_text
+  a
+    color: $main_link
+    text-decoration: none
+    &:hover
+      color: $main_link
+      text-decoration: underline
+
+sidebar
+  +flex-grow(0)
+  background-color: $sidebar_background
+  color: $sidebar_text
+
+footer
+  +flex-grow(0)
+  background-color: $footer_background
+  color: $footer_text
+  padding-top: modular-scale(2)
+  a
+    color: $footer_link
+    text-decoration: none
+    &:hover
+      color: $footer_link
+      text-decoration: underline

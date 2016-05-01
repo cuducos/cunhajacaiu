@@ -1,0 +1,15 @@
+Flask-Assets==0.11
+Flask-Script==2.0.5
+Flask==0.10.1
+arrow==0.7.0
+gunicorn==19.4.5
+libsass==0.11.1
+python-decouple==3.0
+redis==2.10.5
+requests==2.10.0
+requests-cache==0.4.12
+webassets-browserify==1.1.0
+
+# (see https://github.com/miracle2k/webassets/issues/438)
+# until webassets 0.11.2 is released
+git+git://github.com/miracle2k/webassets.git

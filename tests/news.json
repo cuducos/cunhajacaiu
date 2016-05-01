@@ -1,0 +1,182 @@
+{
+  "kind": "Listing",
+  "data": {
+    "facets": {},
+    "modhash": "",
+    "children": [
+      {
+        "kind": "t3",
+        "data": {
+          "domain": "gazetadopovo.com.br",
+          "banned_by": null,
+          "media_embed": {},
+          "subreddit": "brasil",
+          "selftext_html": null,
+          "selftext": "",
+          "likes": null,
+          "suggested_sort": null,
+          "user_reports": [],
+          "secure_media": null,
+          "link_flair_text": "Política",
+          "id": "4gp8t9",
+          "from_kind": null,
+          "gilded": 0,
+          "archived": false,
+          "clicked": false,
+          "report_reasons": null,
+          "author": "pathslog",
+          "media": null,
+          "score": 192,
+          "approved_by": null,
+          "over_18": false,
+          "hidden": false,
+          "preview": {
+            "images": [
+              {
+                "source": {
+                  "url": "https://i.redditmedia.com/ifQ_S5PlqemXya3RPIbvHiS7VNuiPhPZ72Bk0gX3pRU.jpg?s=a42c101a251101d0e7d9d2ebd5dc7081",
+                  "width": 455,
+                  "height": 300
+                },
+                "resolutions": [
+                  {
+                    "url": "https://i.redditmedia.com/ifQ_S5PlqemXya3RPIbvHiS7VNuiPhPZ72Bk0gX3pRU.jpg?fit=crop&amp;crop=faces%2Centropy&amp;arh=2&amp;w=108&amp;s=43ff916a6a1a347105e1cadaf02a918a",
+                    "width": 108,
+                    "height": 71
+                  },
+                  {
+                    "url": "https://i.redditmedia.com/ifQ_S5PlqemXya3RPIbvHiS7VNuiPhPZ72Bk0gX3pRU.jpg?fit=crop&amp;crop=faces%2Centropy&amp;arh=2&amp;w=216&amp;s=f06f24527fb6cfc9bc378f7fe60305cd",
+                    "width": 216,
+                    "height": 142
+                  },
+                  {
+                    "url": "https://i.redditmedia.com/ifQ_S5PlqemXya3RPIbvHiS7VNuiPhPZ72Bk0gX3pRU.jpg?fit=crop&amp;crop=faces%2Centropy&amp;arh=2&amp;w=320&amp;s=5a13bbd4125b2758523c1a29d7432114",
+                    "width": 320,
+                    "height": 210
+                  }
+                ],
+                "variants": {},
+                "id": "IMy5l47uVIMzGAZNiXzGXOW7Ew_21j2EirNwF_1egzg"
+              }
+            ]
+          },
+          "num_comments": 27,
+          "thumbnail": "http://b.thumbs.redditmedia.com/sNhydlBUAgY778oe_v1glJ1LIaxIUd3MNpyRiOkNJbI.jpg",
+          "subreddit_id": "t5_2qh9i",
+          "hide_score": false,
+          "edited": false,
+          "link_flair_css_class": "Politica",
+          "author_flair_css_class": "PR",
+          "downs": 0,
+          "secure_media_embed": {},
+          "saved": false,
+          "removal_reason": null,
+          "post_hint": "link",
+          "stickied": false,
+          "from": null,
+          "is_self": false,
+          "from_id": null,
+          "permalink": "/r/brasil/comments/4gp8t9/eduardo_cunha_reclama_da_rapidez_das/?ref=search_posts",
+          "locked": false,
+          "name": "t3_4gp8t9",
+          "created": 1461802885,
+          "url": "http://www.gazetadopovo.com.br/blogs/caixa-zero/eduardo-cunha-reclama-da-rapidez-das-investigacoes-contra-ele/",
+          "author_flair_text": "Curitiba, PR",
+          "quarantine": false,
+          "title": "Eduardo Cunha reclama da rapidez das investigações contra ele | Caixa Zero | Gazeta do Povo",
+          "created_utc": 1461774085,
+          "distinguished": null,
+          "mod_reports": [],
+          "visited": false,
+          "num_reports": null,
+          "ups": 192
+        }
+      },
+      {
+        "kind": "t3",
+        "data": {
+          "domain": "oglobo.globo.com",
+          "banned_by": null,
+          "media_embed": {},
+          "subreddit": "brasil",
+          "selftext_html": null,
+          "selftext": "",
+          "likes": null,
+          "suggested_sort": null,
+          "user_reports": [],
+          "secure_media": null,
+          "link_flair_text": "Notícia",
+          "id": "4gywnn",
+          "from_kind": null,
+          "gilded": 0,
+          "archived": false,
+          "clicked": false,
+          "report_reasons": null,
+          "author": "babsrosa",
+          "media": null,
+          "score": 169,
+          "approved_by": null,
+          "over_18": false,
+          "hidden": false,
+          "preview": {
+            "images": [
+              {
+                "source": {
+                  "url": "https://i.redditmedia.com/TIOW8jMSd47YOH7pzshS1onTlP6uxoqBKq-JlYJMboY.jpg?s=70cf287e01813ae9087b0c911c5eaf3b",
+                  "width": 220,
+                  "height": 220
+                },
+                "resolutions": [
+                  {
+                    "url": "https://i.redditmedia.com/TIOW8jMSd47YOH7pzshS1onTlP6uxoqBKq-JlYJMboY.jpg?fit=crop&amp;crop=faces%2Centropy&amp;arh=2&amp;w=108&amp;s=4613c54b36a1d7fa961ae02073d7ab3f",
+                    "width": 108,
+                    "height": 108
+                  },
+                  {
+                    "url": "https://i.redditmedia.com/TIOW8jMSd47YOH7pzshS1onTlP6uxoqBKq-JlYJMboY.jpg?fit=crop&amp;crop=faces%2Centropy&amp;arh=2&amp;w=216&amp;s=dcb2c9f0efb0258d22593ee175e57a8f",
+                    "width": 216,
+                    "height": 216
+                  }
+                ],
+                "variants": {},
+                "id": "IU9i2yLFtwvg2BU4dzQPcu8GqOa2TG8SBt6w2B5oNoY"
+              }
+            ]
+          },
+          "num_comments": 75,
+          "thumbnail": "http://b.thumbs.redditmedia.com/ivV6P_JmOis5mTlRk7dAO7bR6pv3Gn_Tlhta0wpG8kw.jpg",
+          "subreddit_id": "t5_2qh9i",
+          "hide_score": false,
+          "edited": false,
+          "link_flair_css_class": "noticias",
+          "author_flair_css_class": null,
+          "downs": 0,
+          "secure_media_embed": {},
+          "saved": false,
+          "removal_reason": null,
+          "post_hint": "link",
+          "stickied": false,
+          "from": null,
+          "is_self": false,
+          "from_id": null,
+          "permalink": "/r/brasil/comments/4gywnn/após_reprovar_filha_de_eduardo_cunha_funcionário/?ref=search_posts",
+          "locked": false,
+          "name": "t3_4gywnn",
+          "created": 1461957294,
+          "url": "http://oglobo.globo.com/brasil/apos-reprovar-filha-de-eduardo-cunha-funcionario-do-detran-rj-acusado-de-extorsao-1-19193288",
+          "author_flair_text": null,
+          "quarantine": false,
+          "title": "Após reprovar filha de Eduardo Cunha, funcionário do Detran-RJ é acusado de extorsão",
+          "created_utc": 1461928494,
+          "distinguished": null,
+          "mod_reports": [],
+          "visited": false,
+          "num_reports": null,
+          "ups": 169
+        }
+      }
+    ],
+    "after": null,
+    "before": null
+  }
+}

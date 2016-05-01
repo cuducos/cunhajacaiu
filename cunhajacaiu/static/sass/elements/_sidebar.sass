@@ -1,0 +1,28 @@
+sidebar
+
+  li
+    border-bottom: rem(2) solid $sidebar_background
+    font-size: modular-scale(-1)
+    margin-top: modular-scale(0)
+    padding-bottom: modular-scale(0)
+    &:first-child
+      margin-top: 0
+    &:last-child
+      border: 0
+      padding-bottom: 0
+    +media($tablet)
+      font-size: modular-scale(0)
+
+  a
+    display: block
+    color: $sidebar_link
+    text-transform: uppercase
+    &:hover
+      color: $sidebar_hover
+
+  span
+    display: block
+    font-size: modular-scale(-2)
+    text-align: right
+    +media($tablet)
+      font-size: modular-scale(-1)

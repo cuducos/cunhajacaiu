@@ -1,0 +1,12 @@
+*.css
+*.db
+*.min.js
+*.pyc
+.DS_Store
+.coverage
+.env
+.ropeproject
+.webassets-cache/
+bower_components/
+cover/
+node_modules/

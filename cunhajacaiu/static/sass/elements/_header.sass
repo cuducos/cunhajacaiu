@@ -1,0 +1,26 @@
+header
+
+  h1, h2
+    margin: 0
+    padding: modular-scale(1) 0
+    +media($tablet)
+      padding: modular-scale(2) 0
+    +media($desktop)
+      padding: modular-scale(2) 0
+
+  h1
+    font-size: modular-scale(0)
+    font-weight: $normal_weight
+    padding-bottom: 0
+    +media($tablet)
+      font-size: modular-scale(1)
+    +media($desktop)
+      font-size: modular-scale(1)
+
+  h2
+    font-size: modular-scale(3)
+    font-weight: $bold_weight
+    +media($tablet)
+      font-size: modular-scale(4)
+    +media($desktop)
+      font-size: modular-scale(4)

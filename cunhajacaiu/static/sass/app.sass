@@ -1,0 +1,25 @@
+// frameworks
+@import '../../../bower_components/bourbon/app/assets/stylesheets/bourbon'
+@import '../../../bower_components/neat/app/assets/stylesheets/neat'
+@import '../../../bower_components/bitters/app/assets/stylesheets/base'
+
+// app settings
+
+$modular-scale-ratio: $golden;
+$modular-scale-base: 1rem;
+$tablet: new-breakpoint(min-width 560px)
+$desktop: new-breakpoint(min-width 960px)
+
+@import 'colors'
+@import 'fonts'
+@import 'tags'
+@import 'classes'
+
+// pseudo bem styles
+@import 'blocks/header'
+@import 'blocks/main'
+@import 'blocks/sidebar'
+@import 'elements/header'
+@import 'elements/main'
+@import 'elements/sidebar'
+@import 'elements/footer'

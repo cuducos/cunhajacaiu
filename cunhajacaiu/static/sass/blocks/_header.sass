@@ -1,0 +1,16 @@
+header
+  
+  .inner div
+    +span-columns(8)
+    +shift(2)
+    +media($tablet)
+      +span-columns(6)
+      +shift(3)
+    +media($desktop)
+      +span-columns(4)
+      +shift(4)
+    img
+      margin: modular-scale(2) 0
+      width: 100%
+      +media($desktop)
+        margin: modular-scale(3) 0
