@@ -13,6 +13,11 @@ BROWSERIFY_BIN = config('BROWSERIFY_BIN', default='browserify')
 REQUESTS_CACHE_BACKEND = config('REQUESTS_CACHE_BACKEND', default='redis')
 REDIS_URL = config('REDIS_URL', default='redis://localhost:6379/0')
 
+AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID', default='')
+AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY', default='')
+FLASKS3_BUCKET_NAME = config('FLASKS3_BUCKET_NAME', default='')
+FLASKS3_REGION = config('FLASKS3_REGION', default='')
+
 GOOGLE_ANALYTICS = config('GOOGLE_ANALYTICS', default='')
 
 TZ_NAME = 'America/Sao_Paulo'

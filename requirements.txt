@@ -2,6 +2,7 @@ Flask==0.10.1
 arrow==0.7.0
 Flask-Assets==0.11
 flask-cors==2.1.2
+flask-s3==0.2.13
 Flask-Script==2.0.5
 gunicorn==19.4.5
 libsass==0.11.1
