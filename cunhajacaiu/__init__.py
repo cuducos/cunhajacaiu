@@ -1,5 +1,6 @@
 from flask import Flask
 from flask.ext.assets import Bundle, Environment
+from flask.ext.cors import CORS
 from flask.ext.script import Manager
 from webassets.filter import register_filter
 from webassets_browserify import Browserify
@@ -7,6 +8,9 @@ from webassets_browserify import Browserify
 # create app
 app = Flask('cunhajacaiu')
 app.config.from_object('cunhajacaiu.settings')
+
+# set CORS headers
+CORS(app, resources={r'/api/*': {'origins': '*'}})
 
 # create assets
 register_filter(Browserify)
