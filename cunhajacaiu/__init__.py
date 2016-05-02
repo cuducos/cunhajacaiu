@@ -1,7 +1,6 @@
 from flask import Flask, jsonify, render_template
 from flask.ext.assets import Bundle, Environment
 from flask.ext.script import Manager
-from requests import get
 from webassets.filter import register_filter
 from webassets_browserify import Browserify
 from cunhajacaiu.news import News
@@ -55,3 +54,9 @@ def api_stopwatch():
 def api_news():
     news = get_news()
     return jsonify(dict(news=list(news.parsed())))
+
+
+@app.context_processor
+def meta_info():
+    return {'title': 'O Cunha já caiu?',
+            'description': 'O Cunha já caiu? Não. Mas estamos esperando…'}

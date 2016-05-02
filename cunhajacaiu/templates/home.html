@@ -2,7 +2,27 @@
 <html lang="pt-BR">
   <head>
     <meta charset="utf-8">
-    <title>Cunha já caiu?</title>
+    <title>{{ title }}</title>
+    <meta name="description" content="{{ description }}" />
+
+    <!-- Schema.org markup for Google+ -->
+    <meta itemprop="name" content="{{ title }}">
+    <meta itemprop="description" content="{{ description }}">
+    <meta itemprop="image" content="{{ url_for('static', filename='imgs/twitter.png', _external=True) }}">
+
+    <!-- Twitter Card data -->
+    <meta name="twitter:card" content="{{ url_for('static', filename='imgs/twitter.thumb.png', _external=True) }}">
+    <meta name="twitter:title" content="{{ title }}">
+    <meta name="twitter:description" content="{{ description }}">
+    <meta name="twitter:image:src" content="{{ url_for('static', filename='imgs/twitter.png', _external=True) }}">
+
+    <!-- Open Graph data -->
+    <meta property="og:title" content="{{ title }}" />
+    <meta property="og:url" content="{{ url_for('index', _external=True) }}" />
+    <meta property="og:image" content="{{ url_for('static', filename='imgs/facebook.png', _external=True) }}" />
+    <meta property="og:description" content="{{ description }}" />
+    <meta property="og:site_name" content="{{ title }}" />
+
     {% assets 'css' %}
     <link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}">
     {% endassets %}
