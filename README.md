@@ -34,7 +34,7 @@ npm install
 
 Set up your environmental variables (copy `.env.sample` as `.env` for example). Optionally you can add:
 
-* `BROWSERIFY_BIN`: (_default_: `browserifyjs`) path to the [Broserify](http://browserify.org) binary
+* `BROWSERIFY_BIN`: (_default_: `browserify`) path to the [Broserify](http://browserify.org) binary
 * `UGLIFYJS_BIN`: (_default_: `uglifyjs`) path to the [UglifyJS](http://lisperator.net/uglifyjs/) binary
 * `REQUESTS_CACHE_BACKEND`: (_default_: `redis`) [requests-cache](http://requests-cache.readthedocs.io) backend
 * `REDIS_URL`: (_default_: `redis://localhost:6379/0`) access to your Redis server
