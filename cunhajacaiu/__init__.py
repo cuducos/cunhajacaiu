@@ -34,7 +34,7 @@ assets.register('js', js_bundle)
 manager = Manager(app)
 
 # add amazon s3 via flask-s3
-if app.config['FLASKS3_BUCKET_NAME']:
+if app.config['FLASKS3_BUCKET_NAME'] and not app.config['DEBUG']:
     FlaskS3(app)
     manager.add_command('collectstatic', AmazonS3Upload(app))
 

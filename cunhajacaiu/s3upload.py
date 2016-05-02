@@ -10,4 +10,5 @@ class AmazonS3Upload(Command):
 
     def run(self):
         if self.app:
-            flask_s3.create_all(self.app)
+            regex = r'^js\/|^css\/|^imgs\/'
+            flask_s3.create_all(self.app, filepath_filter_regex=regex)
