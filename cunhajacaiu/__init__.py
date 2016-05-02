@@ -27,7 +27,7 @@ assets.register('css', css_bundle)
 js_args = dict(filters=('browserify', 'uglifyjs'),
                output='js/app.min.js',
                depends=('**/*.js', '**/*.jsx'))
-js_bundle = Bundle('js/app.js', **js_args)
+js_bundle = Bundle('jsx/app.js', **js_args)
 assets.register('js', js_bundle)
 
 # create manager
