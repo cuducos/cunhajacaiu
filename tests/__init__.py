@@ -25,6 +25,9 @@ class FlaskTestCase(TestCase):
 
 class MockJsonNewsResponse:
 
+    HTTP_STATUS_CODE = (500, 200)
+    COUNT = 0
+
     @staticmethod
     def json():
         with open('tests/news.json') as file_handler:
@@ -32,4 +35,5 @@ class MockJsonNewsResponse:
 
     @property
     def status_code(self):
-        return 200
+        self.COUNT += 1
+        return self.HTTP_STATUS_CODE[self.COUNT - 1]
