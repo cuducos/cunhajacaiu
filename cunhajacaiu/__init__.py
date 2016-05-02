@@ -1,14 +1,14 @@
-from flask import Flask, jsonify, render_template
+from flask import Flask
 from flask.ext.assets import Bundle, Environment
 from flask.ext.script import Manager
 from webassets.filter import register_filter
 from webassets_browserify import Browserify
-from cunhajacaiu.news import News
-from cunhajacaiu.stopwatch import Stopwatch
 
+# create app
 app = Flask('cunhajacaiu')
 app.config.from_object('cunhajacaiu.settings')
 
+# create assets
 register_filter(Browserify)
 assets = Environment(app)
 
@@ -24,39 +24,11 @@ js_args = dict(filters=('browserify', 'uglifyjs'),
 js_bundle = Bundle('js/app.js', **js_args)
 assets.register('js', js_bundle)
 
+# create manager
 manager = Manager(app)
 
-
-def get_stopwatch():
-    return Stopwatch(app.config['LOWER_HOUSE_VOTING'], app.config['TZ_NAME'])
-
-
-def get_news():
-    return News(app.config['REQUESTS_CACHE_BACKEND'], app.config['REDIS_URL'])
-
-
-@app.route('/')
-def index():
-    stopwatch = get_stopwatch()
-    news = get_news()
-    context = dict(news=list(news.parsed()))
-    context.update(stopwatch.as_dict())
-    return render_template('home.html', **context)
-
-
-@app.route('/api/stopwatch/')
-def api_stopwatch():
-    stopwatch = get_stopwatch()
-    return jsonify(**stopwatch.as_dict())
-
-
-@app.route('/api/news/')
-def api_news():
-    news = get_news()
-    return jsonify(dict(news=list(news.parsed())))
-
-
-@app.context_processor
-def meta_info():
-    return {'title': 'O Cunha já caiu?',
-            'description': 'O Cunha já caiu? Não. Mas estamos esperando…'}
+# import & register blueprints
+from cunhajacaiu.blueprints.home import home
+from cunhajacaiu.blueprints.api import api
+app.register_blueprint(home)
+app.register_blueprint(api, url_prefix='/api')

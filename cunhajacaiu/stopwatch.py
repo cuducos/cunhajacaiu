@@ -1,20 +1,20 @@
 from math import floor
 from arrow import utcnow
+from cunhajacaiu import app
 
 
 class Stopwatch:
 
-    def __init__(self, lower_house_voting, tz_name):
-        self.tz_name = tz_name
+    def __init__(self):
         self.now = self.get_now()
-        diff = (self.now - lower_house_voting)
+        diff = (self.now - app.config['LOWER_HOUSE_VOTING'])
         self.days = diff.days
         self.hours = floor(diff.seconds / 3600)
         self.minutes = floor((diff.seconds % 3600) / 60)
         self.seconds = floor((diff.seconds % 3600) % 60)
 
     def get_now(self):
-        return utcnow().to(self.tz_name)
+        return utcnow().to(app.config['TZ_NAME'])
 
     def as_dict(self):
         labels = ('days', 'hours', 'minutes', 'seconds')

@@ -1,7 +1,8 @@
 import redis
-from datetime import timedelta
 import requests
 import requests_cache
+from datetime import timedelta
+from cunhajacaiu import app
 
 
 class News:
@@ -10,15 +11,19 @@ class News:
     FILTER = ('"Eduardo Cunha"', 'subreddit:brasil', 'self:no', '-flair:Humor')
     QUERY = {'q': ' '.join(FILTER), 'sort': 'top', 't': 'week'}
 
-    def __init__(self, backend, url=None):
+    def __init__(self):
 
+        # set up cache
+        backend = app.config['REQUESTS_CACHE_BACKEND']
         cache_settings = {'backend': backend,
                           'expire_after': timedelta(hours=2)}
-
         if backend == 'redis':
-            cache_settings.update({'connection': redis.from_url(url)})
+            redis_url = app.config['REDIS_URL']
+            connection = {'connection': redis.from_url(redis_url)}
+            cache_settings.update(connection)
         requests_cache.install_cache(**cache_settings)
 
+        # try to fecth news from reddit
         success = False
         attempts = 0
         while not success and attempts < 5:
