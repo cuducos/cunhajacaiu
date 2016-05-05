@@ -25,3 +25,4 @@ GOOGLE_ANALYTICS = config('GOOGLE_ANALYTICS', default='')
 TZ_NAME = 'America/Sao_Paulo'
 
 LOWER_HOUSE_VOTING = Arrow(2016, 4, 17, hour=23, minute=37, tzinfo=TZ_NAME)
+HAS_FALLEN = config('HAS_FALLEN', default=False, cast=bool)

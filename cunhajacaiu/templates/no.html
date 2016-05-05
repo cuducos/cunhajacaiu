@@ -1,0 +1,19 @@
+{% extends 'home.html' %}
+{% block header %}
+  <div>
+    <img src="{{ url_for('static', filename='imgs/no.png') }}" alt="Não">
+  </div>
+{% endblock %}
+{% block main %}
+  <div id="stopwatch"
+    data-days="{{ days }}"
+    data-hours="{{ hours }}"
+    data-minutes="{{ minutes }}"
+    data-seconds="{{ seconds }}">
+  </div>
+  <p class="details">
+    desde a votação do impeachment na Câmara, com a expectativa de 
+    que<br>
+    <strong>o Cunha será o próximo</strong>.
+  </p>
+{% endblock %}

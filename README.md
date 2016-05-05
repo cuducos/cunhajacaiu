@@ -34,12 +34,14 @@ npm install
 
 Set up your environmental variables (copy `.env.sample` as `.env` for example). Optionally you can add:
 
+* `HAS_FALLEN` (_default_: `False`) Is Cunha in the office yet?
 * `BROWSERIFY_BIN`: (_default_: `browserify`) path to the [Broserify](http://browserify.org) binary
 * `UGLIFYJS_BIN`: (_default_: `uglifyjs`) path to the [UglifyJS](http://lisperator.net/uglifyjs/) binary
 * `REQUESTS_CACHE_BACKEND`: (_default_: `redis`) [requests-cache](http://requests-cache.readthedocs.io) backend
 * `REDIS_URL`: (_default_: `redis://localhost:6379/0`) access to your Redis server
 * `GOOGLE_ANALYTICS`: Google Analytics tracking code ID (e.g. `UA-XXXXXX-XX`)
 * `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `FLASKS3_BUCKET_NAME`, `FLASKS3_REGION`, : Amazon S3 credentials to be consumed by [Flask-S3](https://flask-s3.readthedocs.io/)
+
 
 ### Ready, set, go
 

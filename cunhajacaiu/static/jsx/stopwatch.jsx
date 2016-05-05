@@ -74,12 +74,14 @@ const Stopwatch = React.createClass({
 
 });
 
-const StopwatchContainer =  document.getElementById('stopwatch');
-const StopwatchDataset = StopwatchContainer.dataset;
+const StopwatchContainer = document.getElementById('stopwatch');
 
-ReactDOM.render(
-  <Stopwatch days={StopwatchDataset.days} hours={StopwatchDataset.hours}
-    minutes={StopwatchDataset.minutes} seconds={StopwatchDataset.seconds}
-    apiUrl={StopwatchDataset.apiUrl} />,
-  StopwatchContainer
-);
+if (StopwatchContainer !== null) {
+  const StopwatchDataset = StopwatchContainer.dataset;
+  ReactDOM.render(
+    <Stopwatch days={StopwatchDataset.days} hours={StopwatchDataset.hours}
+      minutes={StopwatchDataset.minutes} seconds={StopwatchDataset.seconds}
+      apiUrl={StopwatchDataset.apiUrl} />,
+    StopwatchContainer
+  );
+}
