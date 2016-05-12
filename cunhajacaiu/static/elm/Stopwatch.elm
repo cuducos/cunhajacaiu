@@ -52,7 +52,7 @@ toStopwatch : Int -> Model -> Model
 toStopwatch seconds model =
     { model 
     | days = seconds // (3600 * 24)
-    , hours = (seconds % 3600 * 24) // 3600
+    , hours = (seconds % (3600 * 24)) // 3600
     , minutes = (seconds % 3600) // 60
     , seconds = seconds % 60
     }
