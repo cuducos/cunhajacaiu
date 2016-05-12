@@ -1,28 +1,39 @@
-module Stopwatch where
+module Stopwatch exposing (..)
 
 import Html exposing (..)
-import Html.Events exposing (onClick)
+import Html.App as Html
+import Time exposing (second)
 
 
 --
 -- Model
 --
 
-type alias Stopwatch =
+type alias Model =
     { days: Int
     , hours: Int
     , minutes: Int
     , seconds: Int
-    , labels: List String
+    , label: 
+        { day: String
+        , hour: String
+        , minute: String
+        , second: String
+        }
     }
 
-zeroedStopwacth : Stopwatch
-zeroedStopwacth =
+model : Model
+model =
     { days = 0
     , hours = 0
     , minutes = 0
     , seconds = 0
-    , labels = ["Dias", "Horas", "Minutos", "Segundos"]
+    , label = 
+        { day = "Dia"
+        , hour = "Hora"
+        , minute = "Minuto"
+        , second = "Segundo"
+        }
     }
 
 
@@ -30,56 +41,81 @@ zeroedStopwacth =
 -- Update
 --
 
-toSeconds : Stopwatch -> Int
-toSeconds stopwwatch =
-    stopwatch.seconds + stopwatch.minutes * 60 + stopwatch.hours * 3600 + stopwatch.days * 3600 * 24
+toSeconds : Model -> Int
+toSeconds model =
+    model.seconds +
+    model.minutes * 60 +
+    model.hours * 3600 +
+    model.days * 3600 * 24
 
-toStopwatch : Int -> Stopwatch
-toStopwatch seconds =
-    { model
-        | days = seconds // 3600 * 24
-        , hours = (seconds % 3600 * 24) // 3600
-        , minutes = (seconds % 3600) // 60
-        , seconds = seconds % 60
+toStopwatch : Int -> Model -> Model
+toStopwatch seconds model =
+    { model 
+    | days = seconds // (3600 * 24)
+    , hours = (seconds % 3600 * 24) // 3600
+    , minutes = (seconds % 3600) // 60
+    , seconds = seconds % 60
     }
 
-type Action = Increment | None
+type Msg = Load | Tick Time.Time
 
-tic : Action -> Model -> Model
-tic model action =
-    case action of
-        Increment ->
-            toStopwatch <| toSeconds(model) + 1
-        None ->
-            model
+update : Msg -> Model -> (Model, Cmd Msg)
+update msg model =
+    case msg of
+        Tick newTime ->
+            let
+                updatedSeconds = toSeconds(model) + 1
+            in 
+                (toStopwatch updatedSeconds model, Cmd.none)
+        Load ->
+            -- TODO: Load current stopwatch from HTML
+            (model, Cmd.none)
 
+subscriptions : Model -> Sub Msg
+subscriptions model =
+    Time.every second Tick
 
 --
 -- View
 --
 
-view : Signal.Address Action -> Model -> Html
-view address model =
-  div [onClick address Increment]
-    [ div [] [
-        toString model.days, div [] [ stopwatch.labels[0] ]
+pluralize : String -> Int -> String
+pluralize text count =
+    if count == 1 then text else text ++ "s"
+
+view : Model -> Html Msg
+view model =
+  div []
+    [ div []
+        [ text <| toString model.days
+        , div [] [ text <| pluralize model.label.day model.days ]
         ]
-        , div [] [
-            toString model.hours, div [] [ stopwatch.labels[1] ]
-        }
-        , div [] [
-            toString model.minutes, div [] [ stopwatch.labels[2] ]
+    , div []
+        [ text <| toString model.hours
+        , div [] [ text <| pluralize model.label.hour model.hours ]
         ]
-        , div [] [
-            toString model.seconds, div [] [ stopwatch.labels[3] ]
+    , div []
+        [ text <| toString model.minutes
+        , div [] [ text <| pluralize model.label.minute model.minutes ]
+        ]
+    , div []
+        [ text <| toString model.seconds
+        , div [] [ text <| pluralize model.label.second model.seconds ]
         ]
     ]
 
 
 --
--- TODO:
+-- Init app
 --
--- 1. Pluralize labels when needed
--- 2. Avoid using indexes for labels (linas 65-74)
--- 3. Implenet tic every second (not on click)
---
+
+init : (Model, Cmd Msg)
+init = (model, Cmd.none)
+
+main =
+  Html.program
+    { init = init
+    , view = view
+    , update = update
+    , subscriptions = subscriptions
+    }
