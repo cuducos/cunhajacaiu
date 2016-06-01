@@ -5,7 +5,6 @@ from flask.ext.script import Manager
 from flask_s3 import FlaskS3
 from webassets.filter import register_filter
 from webassets_browserify import Browserify
-from cunhajacaiu.s3upload import AmazonS3Upload
 
 # create app
 app = Flask('cunhajacaiu')
@@ -35,6 +34,7 @@ manager = Manager(app)
 
 # add amazon s3 via flask-s3
 if app.config['FLASKS3_BUCKET_NAME'] and not app.debug:
+    from cunhajacaiu.s3upload import AmazonS3Upload
     FlaskS3(app)
     manager.add_command('collectstatic', AmazonS3Upload(app))
 
