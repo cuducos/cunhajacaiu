@@ -36,9 +36,7 @@
         <div class="outer">
           <div class="inner">
             <h1>Cunha já caiu?</h1>  
-            <div>
-              <img src="{{ url_for('static', filename='imgs/no.png') }}" alt="Não">
-            </div>
+            {% block header %}{% endblock %}
           </div><!-- end div.inner -->
         </div><!-- end div.outer -->
       </header>
@@ -46,18 +44,7 @@
       <main>
         <div class="outer">
           <div class="inner">
-            <p>Estamos esperando há</p>
-            <div id="stopwatch"
-                data-days="{{ days }}"
-                data-hours="{{ hours }}"
-                data-minutes="{{ minutes }}"
-                data-seconds="{{ seconds }}">
-            </div>
-            <p class="details">
-              desde a votação do impeachment na Câmara, com a expectativa de 
-              que<br>
-              <strong>o Cunha será o próximo</strong>.
-            </p>
+            {% block main %}{% endblock %}
           </div><!-- end div.inner -->
         </div><!-- end div.outer -->
       </main>
@@ -88,7 +75,7 @@
               <a title="GitHub" href="http://github.com/cuducos/cunhajacaiu">
                 código aberto
               </a>
-              por <a href="http://cuducos.me/">Cuducos</a> & <a href="http://twitter.com/tati_ru/">Tati</a>
+              por <a href="http://cuducos.me/">Cuducos</a> & <a href="http://tatianasb.ru/">Tati</a>
             </p>
           </div><!-- end div.inner -->
         </div><!-- end div.outer -->

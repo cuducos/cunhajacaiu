@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template
+from cunhajacaiu import app
 from cunhajacaiu.news import News
 from cunhajacaiu.stopwatch import Stopwatch
 
@@ -12,7 +13,8 @@ def index():
     news = News()
     context = dict(news=list(news.parsed()))
     context.update(stopwatch.as_dict())
-    return render_template('home.html', **context)
+    template = 'yes' if app.config['HAS_FALLEN'] else 'no'
+    return render_template(template + '.html', **context)
 
 
 @home.context_processor
