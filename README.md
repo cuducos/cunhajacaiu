@@ -46,7 +46,7 @@ Set up your environmental variables (copy `.env.sample` as `.env` for example). 
 Now you can start your server:
 
 ```console
-python manage.py runserver
+FLASK_APP=cunhajacaiu/__init__.py flask run
 ```
 
 ## Test, develop and contribute

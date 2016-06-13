@@ -1,7 +1,6 @@
 from flask import Flask
-from flask.ext.assets import Bundle, Environment
-from flask.ext.cors import CORS
-from flask.ext.script import Manager
+from flask_assets import Bundle, Environment
+from flask_cors import CORS
 from webassets.filter import register_filter
 from webassets_browserify import Browserify
 
@@ -28,15 +27,11 @@ js_args = dict(filters=('browserify', 'uglifyjs'),
 js_bundle = Bundle('elm/app.js', **js_args)
 assets.register('js', js_bundle)
 
-# create manager
-manager = Manager(app)
-
 # add amazon s3 via flask-s3
 if app.config['FLASKS3_BUCKET_NAME'] and not app.debug:
-    from flask_s3 import FlaskS3
-    from cunhajacaiu.s3upload import AmazonS3Upload
-    FlaskS3(app)
-    manager.add_command('collectstatic', AmazonS3Upload(app))
+    import flask_s3
+    flask_s3.FlaskS3(app)
+    flask_s3.create_all(app, filepath_filter_regex=r'^js\/|^css\/|^imgs\/')
 
 # import & register blueprints
 from cunhajacaiu.blueprints.home import home
