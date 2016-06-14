@@ -57,7 +57,7 @@ toStopwatch seconds model =
     , seconds = seconds % 60
     }
 
-type Msg = Load | Tick Time.Time
+type Msg = Tick Time.Time | Load { days: Int , hours: Int , minutes: Int , seconds: Int }
 
 update : Msg -> Model -> (Model, Cmd Msg)
 update msg model =
@@ -67,8 +67,8 @@ update msg model =
                 updatedSeconds = toSeconds(model) + 1
             in 
                 (toStopwatch updatedSeconds model, Cmd.none)
-        Load ->
-            -- TODO: Load current stopwatch from HTML
+        Load stopwatch ->
+            -- TODO: Load current stopwatch from HTML or API
             (model, Cmd.none)
 
 subscriptions : Model -> Sub Msg
@@ -88,19 +88,19 @@ view model =
   div []
     [ div []
         [ text <| toString model.days
-        , div [] [ text <| pluralize model.label.day model.days ]
+        , span [] [ text pluralize model.label.day model.days ]
         ]
     , div []
         [ text <| toString model.hours
-        , div [] [ text <| pluralize model.label.hour model.hours ]
+        , span [] [ text pluralize model.label.hour model.hours ]
         ]
     , div []
         [ text <| toString model.minutes
-        , div [] [ text <| pluralize model.label.minute model.minutes ]
+        , span [] [ text pluralize model.label.minute model.minutes ]
         ]
     , div []
         [ text <| toString model.seconds
-        , div [] [ text <| pluralize model.label.second model.seconds ]
+        , span [] [ text pluralize model.label.second model.seconds ]
         ]
     ]
 
@@ -112,6 +112,7 @@ view model =
 init : (Model, Cmd Msg)
 init = (model, Cmd.none)
 
+main : Program Never
 main =
   Html.program
     { init = init

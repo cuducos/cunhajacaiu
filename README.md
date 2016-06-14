@@ -26,16 +26,16 @@ Install the dependencies:
 
 ```console
 pip install -r requirements.txt
-npm install
+npm i
 ```
 
 ### Environmental variables
 
 Set up your environmental variables (copy `.env.sample` as `.env` for example). Optionally you can add:
 
-* `BROWSERIFY_BIN`: (_default_: `browserify`) path to the [Broserify](http://browserify.org) binary
-* `UGLIFYJS_BIN`: (_default_: `uglifyjs`) path to the [UglifyJS](http://lisperator.net/uglifyjs/) binary
 * `HAS_FALLEN` (_default_: `False`) Is Cunha in the office yet?
+* `ELM_MAKE_BIN`: (_default_: `elm`) path to the `elm-make` bynary from [Elm](http://elm-lang.org)
+  (installed via `npm` by default)
 * `REQUESTS_CACHE_BACKEND`: (_default_: `redis`) [requests-cache](http://requests-cache.readthedocs.io) backend
 * `REDIS_URL`: (_default_: `redis://localhost:6379/0`) access to your Redis server
 * `GOOGLE_ANALYTICS`: Google Analytics tracking code ID (e.g. `UA-XXXXXX-XX`)

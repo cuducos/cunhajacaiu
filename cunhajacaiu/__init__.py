@@ -2,7 +2,7 @@ from flask import Flask
 from flask_assets import Bundle, Environment
 from flask_cors import CORS
 from webassets.filter import register_filter
-from webassets_browserify import Browserify
+from webassets_elm import Elm
 
 # create app
 app = Flask('cunhajacaiu')
@@ -12,7 +12,7 @@ app.config.from_object('cunhajacaiu.settings')
 CORS(app, resources={r'/api/*': {'origins': '*'}})
 
 # create assets
-register_filter(Browserify)
+register_filter(Elm)
 assets = Environment(app)
 
 css_args = dict(filters=('libsass',),
@@ -21,10 +21,10 @@ css_args = dict(filters=('libsass',),
 css_bundle = Bundle('sass/app.sass', **css_args)
 assets.register('css', css_bundle)
 
-js_args = dict(filters=('browserify', 'uglifyjs'),
+js_args = dict(filters=('elm', 'rjsmin'),
                output='js/app.min.js',
-               depends=('**/*.js', '**/*.elm'))
-js_bundle = Bundle('elm/app.js', **js_args)
+               depends=('**/*.elm',))
+js_bundle = Bundle('elm/Stopwatch.elm', **js_args)
 assets.register('js', js_bundle)
 
 # add amazon s3 via flask-s3
