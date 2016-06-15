@@ -4,7 +4,6 @@
 [![Coverage Status](https://coveralls.io/repos/github/cuducos/cunhajacaiu/badge.svg?branch=master)](https://coveralls.io/github/cuducos/cunhajacaiu?branch=master)
 [![Code Climate](https://codeclimate.com/github/cuducos/cunhajacaiu/badges/gpa.svg)](https://codeclimate.com/github/cuducos/cunhajacaiu)
 
-
 Brazilian website counting the days to the fall of [Cunha](https://pt.wikipedia.org/wiki/Eduardo_Cunha).
 
 * Official website: [www.cunhajacaiu.com.br](http://www.cunhajacaiu.com.br)
@@ -12,7 +11,6 @@ Brazilian website counting the days to the fall of [Cunha](https://pt.wikipedia.
  * Stopwatch: [`/api/stopwatch/`](http://www.cunhajacaiu.com.br/api/stopwatch/)
  * Related news: [`/api/news/`](http://www.cunhajacaiu.com.br/api/news/)
  
-
 ## Install
 
 Make sure you are working in an environment with:
@@ -27,20 +25,30 @@ Install the dependencies:
 
 ```console
 pip install -r requirements.txt
-npm install
+npm i
 ```
 
 ### Environmental variables
 
 Set up your environmental variables (copy `.env.sample` as `.env` for example). Optionally you can add:
 
-* `HAS_FALLEN` (_default_: `False`) Is Cunha in the office yet?
-* `BROWSERIFY_BIN`: (_default_: `browserify`) path to the [Broserify](http://browserify.org) binary
-* `UGLIFYJS_BIN`: (_default_: `uglifyjs`) path to the [UglifyJS](http://lisperator.net/uglifyjs/) binary
+#### Assets
+
+* `ELM_MAKE_BIN`: (_default_: `elm-make`) path to the `elm-make` binary from [Elm](http://elm-lang.org)
+  (installed via `npm` by default)
+* `UGLIFYJS_BIN`: (_default_: `uglifyjs`) path to the `uglifyjs` binary from [UglifyJS2](https://github.com/mishoo/UglifyJS2)
+  (installed via `npm` by default)
+* `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `FLASKS3_BUCKET_NAME`, `FLASKS3_REGION`, : Amazon S3 credentials to be consumed by [Flask-S3](https://flask-s3.readthedocs.io/)
+
+#### Cache
+
 * `REQUESTS_CACHE_BACKEND`: (_default_: `redis`) [requests-cache](http://requests-cache.readthedocs.io) backend
 * `REDIS_URL`: (_default_: `redis://localhost:6379/0`) access to your Redis server
+
+#### Others
+
+* `HAS_FALLEN` (_default_: `False`) Is Cunha in the office yet?
 * `GOOGLE_ANALYTICS`: Google Analytics tracking code ID (e.g. `UA-XXXXXX-XX`)
-* `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `FLASKS3_BUCKET_NAME`, `FLASKS3_REGION`, : Amazon S3 credentials to be consumed by [Flask-S3](https://flask-s3.readthedocs.io/)
 
 
 ### Ready, set, go
@@ -48,7 +56,7 @@ Set up your environmental variables (copy `.env.sample` as `.env` for example). 
 Now you can start your server:
 
 ```console
-python manage.py runserver
+FLASK_APP=cunhajacaiu/__init__.py flask run
 ```
 
 ## Test, develop and contribute

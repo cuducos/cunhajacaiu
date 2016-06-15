@@ -1,16 +1,15 @@
-Flask==0.10.1
+Flask==0.11.1
 arrow==0.7.0
 Flask-Assets==0.11
 flask-cors==2.1.2
-flask-s3==0.2.13
-Flask-Script==2.0.5
-gunicorn==19.4.5
+flask-s3==0.2.15
+gunicorn==19.6.0
 libsass==0.11.1
 python-decouple==3.0
 redis==2.10.5
 requests-cache==0.4.12
 requests==2.10.0
-webassets-browserify==1.1.0
+webassets_elm==0.1.1
 
 # (see https://github.com/miracle2k/webassets/issues/438)
 # until webassets 0.11.2 is released
