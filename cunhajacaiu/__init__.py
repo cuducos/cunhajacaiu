@@ -21,7 +21,7 @@ css_args = dict(filters=('libsass',),
 css_bundle = Bundle('sass/app.sass', **css_args)
 assets.register('css', css_bundle)
 
-elm = Bundle('elm/Stopwatch.elm', filters=('elm',), output='js/app.min.js')
+elm = Bundle('elm/Stopwatch.elm', filters=('elm',))
 js_args = dict(filters=('uglifyjs',), output='js/app.min.js')
 js_bundle = Bundle(elm, Bundle('js/app.js'), **js_args)
 assets.register('js', js_bundle)
