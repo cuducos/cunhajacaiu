@@ -2,7 +2,28 @@ module Stopwatch exposing (..)
 
 import Html exposing (..)
 import Html.App as Html
+import Http
+import Json.Decode as Json exposing ((:=))
+import Task
 import Time exposing (second)
+
+
+--
+-- Init app
+--
+
+
+init : (Model, Cmd Msg)
+init = (Model 0 0 0 0, loadStopwatch)
+
+main : Program Never
+main =
+  Html.program
+    { init = init
+    , view = view
+    , update = update
+    , subscriptions = subscriptions
+    }
 
 
 --
@@ -14,26 +35,6 @@ type alias Model =
     , hours: Int
     , minutes: Int
     , seconds: Int
-    , label: 
-        { day: String
-        , hour: String
-        , minute: String
-        , second: String
-        }
-    }
-
-model : Model
-model =
-    { days = 0
-    , hours = 0
-    , minutes = 0
-    , seconds = 0
-    , label = 
-        { day = "Dia"
-        , hour = "Hora"
-        , minute = "Minuto"
-        , second = "Segundo"
-        }
     }
 
 
@@ -48,27 +49,52 @@ toSeconds model =
     model.hours * 3600 +
     model.days * 3600 * 24
 
-toStopwatch : Int -> Model -> Model
-toStopwatch seconds model =
-    { model 
-    | days = seconds // (3600 * 24)
+toStopwatch : Int -> Model
+toStopwatch seconds =
+    { days = seconds // (3600 * 24)
     , hours = (seconds % (3600 * 24)) // 3600
     , minutes = (seconds % 3600) // 60
     , seconds = seconds % 60
     }
 
-type Msg = Tick Time.Time | Load { days: Int , hours: Int , minutes: Int , seconds: Int }
+loadStopwatch : Cmd Msg
+loadStopwatch =
+  let
+    url = "/api/stopwatch/"
+  in
+    Task.perform AjaxFail AjaxSucceed (Http.get decodeStopwatch url)
+
+decodeStopwatch : Json.Decoder Model
+decodeStopwatch =
+  Json.object4 Model
+    ("days" := Json.int)
+    ("hours" := Json.int)
+    ("minutes" := Json.int)
+    ("seconds" := Json.int)
+
+type Msg
+    = Tick Time.Time
+    | LoadStopwatch
+    | AjaxSucceed Model
+    | AjaxFail Http.Error
 
 update : Msg -> Model -> (Model, Cmd Msg)
 update msg model =
     case msg of
+
         Tick newTime ->
             let
-                updatedSeconds = toSeconds(model) + 1
+                updatedStopwatch = toStopwatch <| toSeconds(model) + 1
             in 
-                (toStopwatch updatedSeconds model, Cmd.none)
-        Load stopwatch ->
-            -- TODO: Load current stopwatch from HTML or API
+                (updatedStopwatch, Cmd.none)
+
+        LoadStopwatch ->
+            (model, loadStopwatch)
+
+        AjaxSucceed stopwatch ->
+            (stopwatch, Cmd.none)
+
+        AjaxFail _ ->
             (model, Cmd.none)
 
 subscriptions : Model -> Sub Msg
@@ -83,40 +109,26 @@ pluralize : String -> Int -> String
 pluralize text count =
     if count == 1 then text else text ++ "s"
 
+stopwatchView : Int -> String -> Html Msg
+stopwatchView value label =
+    div []
+        [ text <| toString value
+        , span [] [ text <| pluralize label value ]
+        ]
+
 view : Model -> Html Msg
 view model =
-  div []
-    [ div []
-        [ text <| toString model.days
-        , span [] [ text pluralize model.label.day model.days ]
-        ]
-    , div []
-        [ text <| toString model.hours
-        , span [] [ text pluralize model.label.hour model.hours ]
-        ]
-    , div []
-        [ text <| toString model.minutes
-        , span [] [ text pluralize model.label.minute model.minutes ]
-        ]
-    , div []
-        [ text <| toString model.seconds
-        , span [] [ text pluralize model.label.second model.seconds ]
-        ]
-    ]
-
-
---
--- Init app
---
-
-init : (Model, Cmd Msg)
-init = (model, Cmd.none)
-
-main : Program Never
-main =
-  Html.program
-    { init = init
-    , view = view
-    , update = update
-    , subscriptions = subscriptions
-    }
+    let
+        label =
+            { day = "Dia"
+            , hour = "Hora"
+            , minute = "Minuto"
+            , second = "Segundo"
+            }
+    in
+        div []
+            [ stopwatchView model.days label.day
+            , stopwatchView model.hours label.hour
+            , stopwatchView model.minutes label.minute
+            , stopwatchView model.seconds label.second
+            ]

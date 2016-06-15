@@ -5,7 +5,7 @@
     "url": "git://github.com/cuducos/cunhajacaiu.git"
   },
   "scripts": {
-    "postinstall": "bower install"
+    "postinstall": "bower install && elm-package install --yes"
   },
   "dependencies": {
     "bower": "^1.7.7",
