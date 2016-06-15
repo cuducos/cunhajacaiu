@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+echo "-----> Compiling and compressing assets"
+python -m cunhajacaiu.assets

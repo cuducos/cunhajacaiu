@@ -9,6 +9,8 @@ install:
   - pip install -r requirements-dev.txt
   - pip install coveralls
   - npm install
+services:
+  - redis-server
 script:
   - nosetests --with-coverage --cover-package=cunhajacaiu
 after_success:
