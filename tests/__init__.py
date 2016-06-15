@@ -15,7 +15,6 @@ class FlaskTestCase(TestCase):
 
         # set a testing app
         app.config['TESTING'] = True
-        app.config['REQUESTS_CACHE_BACKEND'] = 'memory'
         self.app = app.test_client()
 
     def tearDown(self):

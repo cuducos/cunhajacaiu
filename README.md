@@ -42,8 +42,8 @@ Set up your environmental variables (copy `.env.sample` as `.env` for example). 
 
 #### Cache
 
-* `REQUESTS_CACHE_BACKEND`: (_default_: `redis`) [requests-cache](http://requests-cache.readthedocs.io) backend
-* `REDIS_URL`: (_default_: `redis://localhost:6379/0`) access to your Redis server
+* `REQUESTS_CACHE_BACKEND`: (_default_: `memory`) [requests-cache](http://requests-cache.readthedocs.io) backend
+* `REDIS_URL`: (_default_: `redis://localhost:6379/0`) access to your Redis server (used when  `REQUESTS_CACHE_BACKEND` is set to `redis`)
 
 #### Others
 
