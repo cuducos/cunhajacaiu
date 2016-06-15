@@ -8,6 +8,7 @@ SECRET_KEY = config('SECRET_KEY', default='segredo+liso-q-bagre-ensaboado')
 
 LIBSASS_STYLE = 'compressed'
 ELM_MAKE_BIN = config('ELM_MAKE_BIN', default='elm-make')
+UGLIFYJS_BIN = config('UGLIFYJS_BIN', default='uglifyjs')
 
 REQUESTS_CACHE_BACKEND = config('REQUESTS_CACHE_BACKEND', default='redis')
 REDIS_URL = config('REDIS_URL', default='redis://localhost:6379/0')

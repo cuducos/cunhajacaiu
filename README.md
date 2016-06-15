@@ -31,15 +31,25 @@ npm i
 
 ### Environmental variables
 
-Set up your environmental variables (copy `.env.sample` as `.env` for example). Optionally you can add:
+Set up your environmental variables (copy `.env.sample` as `.env` for example). Optionally you can add the following variables:
 
-* `HAS_FALLEN` (_default_: `False`) Is Cunha in the office yet?
-* `ELM_MAKE_BIN`: (_default_: `elm`) path to the `elm-make` bynary from [Elm](http://elm-lang.org)
+#### Assets
+
+* `ELM_MAKE_BIN`: (_default_: `elm-make`) path to the `elm-make` binary from [Elm](http://elm-lang.org)
   (installed via `npm` by default)
+* `UGLIFYJS_BIN`: (_default_: `uglifyjs`) path to the `uglifyjs` binary from [UglifyJS2](https://github.com/mishoo/UglifyJS2)
+  (installed via `npm` by default)
+* `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `FLASKS3_BUCKET_NAME`, `FLASKS3_REGION`, : Amazon S3 credentials to be consumed by [Flask-S3](https://flask-s3.readthedocs.io/)
+
+#### Cache
+
 * `REQUESTS_CACHE_BACKEND`: (_default_: `redis`) [requests-cache](http://requests-cache.readthedocs.io) backend
 * `REDIS_URL`: (_default_: `redis://localhost:6379/0`) access to your Redis server
+
+#### Others
+
+* `HAS_FALLEN` (_default_: `False`) Is Cunha in the office yet?
 * `GOOGLE_ANALYTICS`: Google Analytics tracking code ID (e.g. `UA-XXXXXX-XX`)
-* `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `FLASKS3_BUCKET_NAME`, `FLASKS3_REGION`, : Amazon S3 credentials to be consumed by [Flask-S3](https://flask-s3.readthedocs.io/)
 
 ### Ready, set, go
 

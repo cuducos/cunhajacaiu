@@ -1,5 +1,5 @@
-*.css
 *.db
+*.min.css
 *.min.js
 *.pyc
 .DS_Store

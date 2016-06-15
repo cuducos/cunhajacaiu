@@ -85,12 +85,6 @@
 
     {% assets 'js' %}
     <script src="{{ ASSET_URL }}"></script>
-    <script>
-      var stopwatchContainer = document.getElementById('stopwatch');
-      if (stopwatchContainer) {
-        var app = Elm.Stopwatch.embed(stopwatchContainer);
-      }
-    </script>
     {% endassets %}
 
     {% if config['GOOGLE_ANALYTICS'] %}

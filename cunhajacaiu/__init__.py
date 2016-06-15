@@ -21,10 +21,9 @@ css_args = dict(filters=('libsass',),
 css_bundle = Bundle('sass/app.sass', **css_args)
 assets.register('css', css_bundle)
 
-js_args = dict(filters=('elm', 'rjsmin'),
-               output='js/app.min.js',
-               depends=('**/*.elm',))
-js_bundle = Bundle('elm/Stopwatch.elm', **js_args)
+elm = Bundle('elm/Stopwatch.elm', filters=('elm',), output='js/app.min.js')
+js_args = dict(filters=('uglifyjs',), output='js/app.min.js')
+js_bundle = Bundle(elm, Bundle('js/app.js'), **js_args)
 assets.register('js', js_bundle)
 
 # add amazon s3 via flask-s3
