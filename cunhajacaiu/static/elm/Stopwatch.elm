@@ -2,6 +2,7 @@ module Stopwatch exposing (..)
 
 import Html exposing (..)
 import Html.App as Html
+import Html.Attributes exposing (style)
 import Http
 import Json.Decode as Json exposing ((:=))
 import Task
@@ -116,6 +117,10 @@ stopwatchView value label =
         , span [] [ text <| pluralize label value ]
         ]
 
+visibility : Model -> String
+visibility model =
+    if toSeconds model == 0 then "hidden" else "visible"
+
 view : Model -> Html Msg
 view model =
     let
@@ -126,7 +131,7 @@ view model =
             , second = "Segundo"
             }
     in
-        div []
+        div [ style [ ( "visibility", visibility model ) ] ]
             [ stopwatchView model.days label.day
             , stopwatchView model.hours label.hour
             , stopwatchView model.minutes label.minute
