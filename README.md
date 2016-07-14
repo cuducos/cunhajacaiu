@@ -53,10 +53,11 @@ Set up your environmental variables (copy `.env.sample` as `.env` for example). 
 
 ### Ready, set, go
 
-Now you can start your server:
+Now you can start your server. According to [Flask's new CLI](http://flask.pocoo.org/docs/0.11/cli/) set the `FLASK_APP` environment variable pointint to the entrypoint of the application and you're good to go:
 
 ```console
-FLASK_APP=cunhajacaiu/__init__.py flask run
+export FLASK_APP=cunhajacaiu/__init__.py
+flask run
 ```
 
 ## Test, develop and contribute
