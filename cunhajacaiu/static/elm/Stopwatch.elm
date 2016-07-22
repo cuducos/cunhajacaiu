@@ -14,41 +14,52 @@ import Time exposing (second)
 --
 
 
-init : (Model, Cmd Msg)
-init = (Model 0 0 0 0, loadStopwatch)
+init : ( Model, Cmd Msg )
+init =
+    ( Model 0 0 0 0, loadStopwatch )
+
 
 main : Program Never
 main =
-  Html.program
-    { init = init
-    , view = view
-    , update = update
-    , subscriptions = subscriptions
-    }
+    Html.program
+        { init = init
+        , view = view
+        , update = update
+        , subscriptions = subscriptions
+        }
+
 
 
 --
 -- Model
 --
 
+
 type alias Model =
-    { days: Int
-    , hours: Int
-    , minutes: Int
-    , seconds: Int
+    { days : Int
+    , hours : Int
+    , minutes : Int
+    , seconds : Int
     }
+
 
 
 --
 -- Update
 --
 
+
 toSeconds : Model -> Int
 toSeconds model =
-    model.seconds +
-    model.minutes * 60 +
-    model.hours * 3600 +
-    model.days * 3600 * 24
+    model.seconds
+        + model.minutes
+        * 60
+        + model.hours
+        * 3600
+        + model.days
+        * 3600
+        * 24
+
 
 toStopwatch : Int -> Model
 toStopwatch seconds =
@@ -58,20 +69,24 @@ toStopwatch seconds =
     , seconds = seconds % 60
     }
 
+
 loadStopwatch : Cmd Msg
 loadStopwatch =
-  let
-    url = "/api/stopwatch/"
-  in
-    Task.perform AjaxFail AjaxSucceed (Http.get decodeStopwatch url)
+    let
+        url =
+            "/api/stopwatch/"
+    in
+        Task.perform AjaxFail AjaxSucceed (Http.get decodeStopwatch url)
+
 
 decodeStopwatch : Json.Decoder Model
 decodeStopwatch =
-  Json.object4 Model
-    ("days" := Json.int)
-    ("hours" := Json.int)
-    ("minutes" := Json.int)
-    ("seconds" := Json.int)
+    Json.object4 Model
+        ("days" := Json.int)
+        ("hours" := Json.int)
+        ("minutes" := Json.int)
+        ("seconds" := Json.int)
+
 
 type Msg
     = Tick Time.Time
@@ -79,36 +94,45 @@ type Msg
     | AjaxSucceed Model
     | AjaxFail Http.Error
 
-update : Msg -> Model -> (Model, Cmd Msg)
+
+update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-
         Tick newTime ->
             let
-                updatedStopwatch = toStopwatch <| toSeconds(model) + 1
-            in 
-                (updatedStopwatch, Cmd.none)
+                updatedStopwatch =
+                    toStopwatch <| toSeconds (model) + 1
+            in
+                ( updatedStopwatch, Cmd.none )
 
         LoadStopwatch ->
-            (model, loadStopwatch)
+            ( model, loadStopwatch )
 
         AjaxSucceed stopwatch ->
-            (stopwatch, Cmd.none)
+            ( stopwatch, Cmd.none )
 
         AjaxFail _ ->
-            (model, Cmd.none)
+            ( model, Cmd.none )
+
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
     Time.every second Tick
 
+
+
 --
 -- View
 --
 
+
 pluralize : String -> Int -> String
 pluralize text count =
-    if count == 1 then text else text ++ "s"
+    if count == 1 then
+        text
+    else
+        text ++ "s"
+
 
 stopwatchView : Int -> String -> Html Msg
 stopwatchView value label =
@@ -117,9 +141,14 @@ stopwatchView value label =
         , span [] [ text <| pluralize label value ]
         ]
 
+
 visibility : Model -> String
 visibility model =
-    if toSeconds model == 0 then "hidden" else "visible"
+    if toSeconds model == 0 then
+        "hidden"
+    else
+        "visible"
+
 
 view : Model -> Html Msg
 view model =
