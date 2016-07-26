@@ -64,7 +64,7 @@ update msg model =
             ( model, Cmd.none )
 
         LoadStopwatchSucceeded stopwatch ->
-            ( { model | stopwatch = stopwatch }, loadNews )
+            ( { model | stopwatch = stopwatch }, Cmd.none )
 
         Tick _ ->
             let
@@ -168,7 +168,7 @@ loadNews =
 main : Program Never
 main =
     Html.App.program
-        { init = ( initialModel, loadStopwatch )
+        { init = ( initialModel, Cmd.batch [ loadStopwatch, loadNews ] )
         , update = update
         , view = view
         , subscriptions = subscriptions
