@@ -7,9 +7,7 @@
 Brazilian website counting the days to the fall of [Cunha](https://pt.wikipedia.org/wiki/Eduardo_Cunha).
 
 * Official website: [www.cunhajacaiu.com.br](http://www.cunhajacaiu.com.br)
-* API entrypoints:
- * Stopwatch: [`/api/stopwatch/`](http://www.cunhajacaiu.com.br/api/stopwatch/)
- * Related news: [`/api/news/`](http://www.cunhajacaiu.com.br/api/news/)
+* JSON API: [`/api/`](http://www.cunhajacaiu.com.br/api/)
  
 ## Install
 
@@ -17,7 +15,6 @@ Make sure you are working in an environment with:
 
 * [Python](http://python.org) 3 with `pip`
 * [NodeJS](http://nodejs.org) with `npm`
-* Optionally (but recommended) a local [Redis](http://redis.io) server
 
 ### Dependencies
 
@@ -39,11 +36,6 @@ Set up your environmental variables (copy `.env.sample` as `.env` for example). 
 * `UGLIFYJS_BIN`: (_default_: `uglifyjs`) path to the `uglifyjs` binary from [UglifyJS2](https://github.com/mishoo/UglifyJS2)
   (installed via `npm` by default)
 * `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `FLASKS3_BUCKET_NAME`, `FLASKS3_REGION`, : Amazon S3 credentials to be consumed by [Flask-S3](https://flask-s3.readthedocs.io/)
-
-#### Cache
-
-* `REQUESTS_CACHE_BACKEND`: (_default_: `memory`) [requests-cache](http://requests-cache.readthedocs.io) backend
-* `REDIS_URL`: (_default_: `redis://localhost:6379/0`) access to your Redis server (used when  `REQUESTS_CACHE_BACKEND` is set to `redis`)
 
 #### Others
 

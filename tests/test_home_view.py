@@ -1,16 +1,14 @@
 from datetime import datetime
 from dateutil.tz import gettz
-from tests import FlaskTestCase, MockJsonNewsResponse
+from tests import FlaskTestCase
 from unittest.mock import patch
 from arrow import Arrow
 
 
 class TestGet(FlaskTestCase):
 
-    @patch('cunhajacaiu.news.requests.get')
-    def setUp(self, mocked_get):
+    def setUp(self):
         super().setUp()
-        mocked_get.return_value = MockJsonNewsResponse
         self.resp = self.app.get('/')
 
     def test_status(self):
@@ -19,12 +17,8 @@ class TestGet(FlaskTestCase):
     def test_content_type(self):
         self.assertIn('text/html', self.resp.headers['Content-Type'])
 
-    @patch('cunhajacaiu.news.requests.get')
     @patch('cunhajacaiu.stopwatch.Stopwatch.get_now')
-    def test_html(self, mocked_now, mocked_get):
-
-        # patch requests library
-        mocked_get.return_value = MockJsonNewsResponse
+    def test_html(self, mocked_now):
 
         # patch now inside the Stopwatch object
         tz = gettz('America/Sao_Paulo')
@@ -36,17 +30,8 @@ class TestGet(FlaskTestCase):
         html_resp = resp.data.decode('utf-8')
 
         # assertions
-        expected = (('<h1>Cunha já caiu?</h1>', 1),
-                    ('<img src="/static/imgs/no.png" alt="Não">', 1),
-                    ('<div id="stopwatch"', 1),
-                    ('data-days="11"', 1),
-                    ('data-hours="16"', 1),
-                    ('data-minutes="1"', 1),
-                    ('data-seconds="8"', 1),
-                    ('Eduardo Cunha reclama da rapidez das investigações', 1),
-                    ('gazetadopovo.com.br', 2),
-                    ('Após reprovar filha de Eduardo Cunha, funcionário ', 1),
-                    ('oglobo.globo.com', 2))
+        expected = (('<title>Cunha já caiu?</title>', 1),
+                    ('<div id="elm"', 1))
         with self.subTest():
             for content, count in expected:
                 self.assertIn(content, html_resp, count)

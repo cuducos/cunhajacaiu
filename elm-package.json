@@ -1,10 +1,10 @@
 {
     "version": "0.0.1",
-    "summary": "Stopwatch for Cunha já caiu?",
+    "summary": "Cunha já caiu?",
     "repository": "https://github.com/cuducos/cunhajacaiu.git",
     "license": "MIT",
     "source-directories": [
-        "."
+        "./cunhajacaiu/static/elm/"
     ],
     "exposed-modules": [],
     "dependencies": {

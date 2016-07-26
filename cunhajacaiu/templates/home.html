@@ -32,40 +32,7 @@
 
     <div class="wrapper">
 
-      <header>
-        <div class="outer">
-          <div class="inner">
-            <h1>Cunha já caiu?</h1>  
-            {% block header %}{% endblock %}
-          </div><!-- end div.inner -->
-        </div><!-- end div.outer -->
-      </header>
-
-      <main>
-        <div class="outer">
-          <div class="inner">
-            {% block main %}{% endblock %}
-          </div><!-- end div.inner -->
-        </div><!-- end div.outer -->
-      </main>
-
-      {% if news %}
-      <sidebar>
-        <div class="outer">
-          <div class="inner">
-            <ul>
-              {% for item in news %}
-              <li>
-                <a href="{{ item.url }}">
-                  {{ item.title }}
-                  <span>{{ item.domain }}</span>
-                </a>
-              </li>
-              {% endfor %}
-          </div><!-- end div.inner -->
-        </div><!-- end div.outer -->
-      </sidebar>
-      {% endif %}
+      <div id="elm"></div>
 
       <footer>
         <div class="outer">

@@ -10,7 +10,7 @@ class TestGet(FlaskTestCase):
 
     def setUp(self):
         super().setUp()
-        self.resp = self.app.get('/api/stopwatch/')
+        self.resp = self.app.get('/api/')
 
     def test_status(self):
         self.assertEqual(200, self.resp.status_code)
@@ -27,12 +27,12 @@ class TestGet(FlaskTestCase):
         mocked_now.return_value = Arrow.fromdatetime(now)
 
         # make a new request
-        resp = self.app.get('/api/stopwatch/')
+        resp = self.app.get('/api/')
         json_resp = loads(resp.data.decode('utf-8'))
 
         # assertions
-        keys = ('days', 'hours', 'minutes', 'seconds')
-        values = (11, 16, 1, 8)
+        keys = ('days', 'hours', 'minutes', 'seconds', 'fallen')
+        values = (11, 16, 1, 8, False)
         with self.subTest():
             for key, value in zip(keys, values):
                 self.assertIn(key, json_resp)

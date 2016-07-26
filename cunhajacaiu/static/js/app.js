@@ -1,2 +1,2 @@
-var stopwatchContainer = document.getElementById('stopwatch');
-if (stopwatchContainer !== null) Elm.Stopwatch.embed(stopwatchContainer);
+var elmContainer = document.getElementById('elm');
+if (elmContainer !== null) Elm.Main.embed(elmContainer);
