@@ -1,6 +1,7 @@
 module Main exposing (..)
 
-import Html exposing (aside, div, h1, h2, header, img, p, text)
+import Date
+import Html exposing (aside, br, div, h1, h2, header, img, p, text)
 import Html.Attributes exposing (alt, class, src)
 import Html.App
 import Http
@@ -19,14 +20,28 @@ import Stopwatch
 type alias Model =
     { news : News.Model
     , stopwatch : Stopwatch.Model
+    , voting : Date.Date
+    , fallen : Bool
     }
 
 
 initialModel : Model
 initialModel =
-    { news = News.Model []
-    , stopwatch = Stopwatch.Model 0 0 0 0 False
-    }
+    let
+        voting =
+            "2016-04-17T23:37:00-03:00"
+
+        fallen =
+            False
+
+        votingDate =
+            Result.withDefault (Date.fromTime 0) (Date.fromString voting)
+    in
+        { news = News.Model []
+        , stopwatch = Stopwatch.Model 0 0 0 0
+        , voting = votingDate
+        , fallen = fallen
+        }
 
 
 
@@ -40,8 +55,6 @@ type Msg
     | StopwatchMsg Stopwatch.Msg
     | LoadNewsFailed Http.Error
     | LoadNewsSucceeded (List News.Item)
-    | LoadStopwatchFailed Http.Error
-    | LoadStopwatchSucceeded Stopwatch.Model
     | Tick Time.Time
 
 
@@ -60,20 +73,18 @@ update msg model =
         LoadNewsSucceeded news ->
             ( { model | news = News.Model news }, Cmd.none )
 
-        LoadStopwatchFailed _ ->
-            ( model, Cmd.none )
-
-        LoadStopwatchSucceeded stopwatch ->
-            ( { model | stopwatch = stopwatch }, Cmd.none )
-
-        Tick _ ->
+        Tick newTime ->
             let
-                stopwatch =
-                    Stopwatch.toStopwatch
-                        (Stopwatch.toSeconds (model.stopwatch) + 1)
-                        model.stopwatch.fallen
+                seconds =
+                    if Stopwatch.toSeconds model.stopwatch == 0 then
+                        round <| (newTime - (Date.toTime model.voting)) / 1000
+                    else
+                        (Stopwatch.toSeconds model.stopwatch) + 1
+
+                newStopwatch =
+                    Stopwatch.toStopwatch seconds
             in
-                ( { model | stopwatch = stopwatch }, Cmd.none )
+                ( { model | stopwatch = newStopwatch }, Cmd.none )
 
 
 
@@ -111,11 +122,18 @@ viewNews model =
 
 view : Model -> Html.Html Msg
 view model =
-    div []
-        [ div [] [ viewQuestion model.stopwatch.fallen ]
-        , Html.App.map StopwatchMsg (Stopwatch.view model.stopwatch)
-        , Html.App.map NewsMsg (viewNews model.news)
-        ]
+    let
+        stopwatchView =
+            if model.fallen then
+                br [] []
+            else
+                Stopwatch.view model.stopwatch
+    in
+        div []
+            [ div [] [ viewQuestion model.fallen ]
+            , Html.App.map StopwatchMsg stopwatchView
+            , Html.App.map NewsMsg (viewNews model.news)
+            ]
 
 
 
@@ -133,14 +151,6 @@ subscriptions model =
 --
 -- Init
 --
-
-
-loadStopwatch : Cmd Msg
-loadStopwatch =
-    Task.perform
-        LoadStopwatchFailed
-        LoadStopwatchSucceeded
-        (Http.get Decoder.stopwatch "/api/")
 
 
 loadNews : Cmd Msg
@@ -168,7 +178,7 @@ loadNews =
 main : Program Never
 main =
     Html.App.program
-        { init = ( initialModel, Cmd.batch [ loadStopwatch, loadNews ] )
+        { init = ( initialModel, loadNews )
         , update = update
         , view = view
         , subscriptions = subscriptions

@@ -2,26 +2,26 @@
 <html lang="pt-BR">
   <head>
     <meta charset="utf-8">
-    <title>{{ title }}</title>
+    <title>Cunha já caiu?</title>
     <meta name="description" content="{{ description }}" />
 
     <!-- Schema.org markup for Google+ -->
-    <meta itemprop="name" content="{{ title }}">
-    <meta itemprop="description" content="{{ description }}">
+    <meta itemprop="name" content="Cunha já caiu?">
+    <meta itemprop="description" content="Estamos nos perguntando se o Cunha já caiu…">
     <meta itemprop="image" content="{{ url_for('static', filename='imgs/twitter.png', _external=True) }}">
 
     <!-- Twitter Card data -->
     <meta name="twitter:card" content="{{ url_for('static', filename='imgs/twitter.thumb.png', _external=True) }}">
-    <meta name="twitter:title" content="{{ title }}">
+    <meta name="twitter:title" content="Cunha já caiu?">
     <meta name="twitter:description" content="{{ description }}">
     <meta name="twitter:image:src" content="{{ url_for('static', filename='imgs/twitter.png', _external=True) }}">
 
     <!-- Open Graph data -->
-    <meta property="og:title" content="{{ title }}" />
-    <meta property="og:url" content="{{ url_for('home.index', _external=True) }}" />
+    <meta property="og:title" content="Cunha já caiu?" />
+    <meta property="og:url" content="{{ url_for('home', _external=True) }}" />
     <meta property="og:image" content="{{ url_for('static', filename='imgs/facebook.png', _external=True) }}" />
     <meta property="og:description" content="{{ description }}" />
-    <meta property="og:site_name" content="{{ title }}" />
+    <meta property="og:site_name" content="Cunha já caiu?" />
 
     <link href='https://fonts.googleapis.com/css?family=Hind:300,700' rel='stylesheet' type='text/css'>
     {% assets 'css' %}

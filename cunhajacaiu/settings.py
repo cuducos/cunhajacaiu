@@ -1,4 +1,3 @@
-from arrow import Arrow
 from os import pardir, path
 from decouple import config
 
@@ -11,11 +10,6 @@ ELM_MAKE_BIN = config('ELM_MAKE_BIN', default='elm-make')
 UGLIFYJS_BIN = config('UGLIFYJS_BIN', default='uglifyjs')
 
 GOOGLE_ANALYTICS = config('GOOGLE_ANALYTICS', default='')
-
-TZ_NAME = 'America/Sao_Paulo'
-
-LOWER_HOUSE_VOTING = Arrow(2016, 4, 17, hour=23, minute=37, tzinfo=TZ_NAME)
-HAS_FALLEN = config('HAS_FALLEN', default=False, cast=bool)
 
 FLASKS3_BUCKET_NAME = config('FLASKS3_BUCKET_NAME', default='')
 AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID', default='')

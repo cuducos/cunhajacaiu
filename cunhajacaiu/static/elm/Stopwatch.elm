@@ -5,7 +5,7 @@ import Html.Attributes exposing (class, id)
 
 
 type Msg
-    = None
+    = False
 
 
 
@@ -19,7 +19,6 @@ type alias Model =
     , hours : Int
     , minutes : Int
     , seconds : Int
-    , fallen : Bool
     }
 
 
@@ -37,13 +36,12 @@ toSeconds model =
         + (model.days * 3600 * 24)
 
 
-toStopwatch : Int -> Bool -> Model
-toStopwatch seconds fallen =
+toStopwatch : Int -> Model
+toStopwatch seconds =
     { days = seconds // (3600 * 24)
     , hours = (seconds % (3600 * 24)) // 3600
     , minutes = (seconds % 3600) // 60
     , seconds = seconds % 60
-    , fallen = fallen
     }
 
 
@@ -103,7 +101,4 @@ view model =
             , p [ class "details" ] [ text "Ele renunciou à presidência da Câmara, mas continua como deputado e com acusação de quebra de decoro." ]
             ]
     in
-        if model.fallen then
-            br [] []
-        else
-            main' [] (List.append [ viewStopwatch model ] details)
+        main' [] (List.append [ viewStopwatch model ] details)

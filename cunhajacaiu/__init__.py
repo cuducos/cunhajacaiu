@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 from flask_assets import Bundle, Environment
 from flask_cors import CORS
 from webassets.filter import register_filter
@@ -32,8 +32,8 @@ if app.config['FLASKS3_BUCKET_NAME'] and not app.debug:
     flask_s3.FlaskS3(app)
     flask_s3.create_all(app, filepath_filter_regex=r'^js\/|^css\/|^imgs\/')
 
-# import & register blueprints
-from cunhajacaiu.blueprints.home import home
-from cunhajacaiu.blueprints.api import api
-app.register_blueprint(home)
-app.register_blueprint(api, url_prefix='/api')
+
+# home view
+@app.route('/')
+def home():
+    return render_template('home.html')
