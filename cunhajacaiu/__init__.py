@@ -1,15 +1,11 @@
 from flask import Flask, render_template
 from flask_assets import Bundle, Environment
-from flask_cors import CORS
 from webassets.filter import register_filter
 from webassets_elm import Elm
 
 # create app
 app = Flask('cunhajacaiu')
 app.config.from_object('cunhajacaiu.settings')
-
-# set CORS headers
-CORS(app, resources={r'/api/*': {'origins': '*'}})
 
 # create assets
 register_filter(Elm)
