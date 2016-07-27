@@ -1,8 +1,8 @@
 module Main exposing (..)
 
 import Date
-import Html exposing (aside, br, div, h1, h2, header, img, p, text)
-import Html.Attributes exposing (alt, class, src)
+import Html exposing (a, aside, br, div, footer, h1, h2, header, img, p, text)
+import Html.Attributes exposing (alt, class, href, src, title)
 import Html.App
 import Http
 import Task
@@ -120,6 +120,32 @@ viewNews model =
     aside [] [ viewWrapper <| [ News.view model ] ]
 
 
+viewFooter : Html.Html Msg
+viewFooter =
+    let
+        contents =
+            [ p []
+                [ text "Feito com "
+                , a
+                    [ title "GitHub"
+                    , href "http://github.com/cuducos/cunhajacaiu"
+                    ]
+                    [ text "código aberto" ]
+                , text " por "
+                , a [ href "http://cuducos.me/" ] [ text "Cuducos" ]
+                , text " e "
+                , a
+                    [ title "Tatiana Balachova"
+                    , href "http://tatianasb.ru/"
+                    ]
+                    [ text "Tati" ]
+                , text "."
+                ]
+            ]
+    in
+        footer [] [ viewWrapper <| contents ]
+
+
 view : Model -> Html.Html Msg
 view model =
     let
@@ -129,10 +155,11 @@ view model =
             else
                 Stopwatch.view model.stopwatch
     in
-        div []
-            [ div [] [ viewQuestion model.fallen ]
+        div [ class "wrapper" ]
+            [ viewQuestion model.fallen
             , Html.App.map StopwatchMsg stopwatchView
             , Html.App.map NewsMsg (viewNews model.news)
+            , viewFooter
             ]
 
 
