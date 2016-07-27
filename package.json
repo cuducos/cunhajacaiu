@@ -10,6 +10,6 @@
   "dependencies": {
     "bower": "^1.7.7",
     "elm": "^0.17.1",
-    "uglify-js": "^2.6.4"
+    "uglify-js": "^2.7.0"
   }
 }
