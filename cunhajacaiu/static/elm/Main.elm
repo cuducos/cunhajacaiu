@@ -1,15 +1,16 @@
 module Main exposing (..)
 
 import Date
-import Html exposing (a, aside, br, div, footer, h1, h2, header, img, p, text)
-import Html.Attributes exposing (alt, class, href, src, title)
-import Html.App
-import Http
-import Task
-import Time exposing (second)
 import Decoder
+import Html exposing (a, aside, br, div, footer, h1, h2, header, p, text)
+import Html.App
+import Html.Attributes exposing (class, href, title)
+import Http
+import Image
 import News
 import Stopwatch
+import Task
+import Time exposing (second)
 
 
 --
@@ -107,7 +108,7 @@ viewQuestion fallen =
                 , p [] [ text "Não definitivamente, mas pelo menos está afastado do cargo…" ]
                 ]
             else
-                [ div [] [ img [ src "/static/imgs/no.png", alt "Não" ] [] ] ]
+                [ div [] [ Image.responsive "/static/imgs/no.png" "Não" ] ]
 
         contents =
             List.append [ h1 [] [ text "Cunha já caiu?" ] ] answer
