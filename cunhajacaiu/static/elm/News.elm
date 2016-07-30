@@ -22,7 +22,7 @@ type alias Item =
 
 
 type alias Model =
-    { news : List Item }
+    List Item
 
 
 
@@ -44,7 +44,7 @@ viewItem news =
 
 view : Model -> Html.Html Msg
 view model =
-    if List.length model.news == 0 then
+    if List.length model == 0 then
         text ""
     else
-        ul [] (List.map viewItem model.news)
+        ul [] (List.map viewItem <| List.take 7 model)

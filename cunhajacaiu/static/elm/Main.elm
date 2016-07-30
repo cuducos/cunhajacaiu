@@ -19,7 +19,7 @@ import Time exposing (second)
 
 
 type alias Model =
-    { news : News.Model
+    { news : List News.Item
     , stopwatch : Stopwatch.Model
     , voting : Date.Date
     , fallen : Bool
@@ -29,18 +29,17 @@ type alias Model =
 initialModel : Model
 initialModel =
     let
-        voting =
-            "2016-04-17T23:37:00-03:00"
-
         fallen =
             False
 
-        votingDate =
-            Result.withDefault (Date.fromTime 0) (Date.fromString voting)
+        voting =
+            Result.withDefault
+                (Date.fromTime 0)
+                (Date.fromString "2016-04-17T23:37:00-03:00")
     in
-        { news = News.Model []
+        { news = []
         , stopwatch = Stopwatch.Model 0 0 0 0
-        , voting = votingDate
+        , voting = voting
         , fallen = fallen
         }
 
@@ -62,30 +61,21 @@ type Msg
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-        NewsMsg msg ->
-            ( model, Cmd.none )
-
-        StopwatchMsg msg ->
-            ( model, Cmd.none )
-
-        LoadNewsFailed _ ->
-            ( model, Cmd.none )
-
         LoadNewsSucceeded news ->
-            ( { model | news = News.Model news }, Cmd.none )
+            ( { model | news = news }, Cmd.none )
 
         Tick newTime ->
             let
-                seconds =
-                    if Stopwatch.toSeconds model.stopwatch == 0 then
-                        round <| (newTime - (Date.toTime model.voting)) / 1000
-                    else
-                        (Stopwatch.toSeconds model.stopwatch) + 1
-
                 newStopwatch =
-                    Stopwatch.toStopwatch seconds
+                    Stopwatch.toStopwatch <|
+                        round <|
+                            (newTime - (Date.toTime model.voting))
+                                / 1000
             in
                 ( { model | stopwatch = newStopwatch }, Cmd.none )
+
+        _ ->
+            ( model, Cmd.none )
 
 
 
