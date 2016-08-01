@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-rm -v cunhajacaiu/static/css/app.min.css
-rm -v cunhajacaiu/static/js/app.min.js
+rm -vf cunhajacaiu/static/css/app.min.css
+rm -vf cunhajacaiu/static/js/app.min.js
 rm -rfv cunhajacaiu/static/.webassets-cache
-rm -v test.js
+rm -vf test.js 
