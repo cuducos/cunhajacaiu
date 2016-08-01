@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
-rm -vf cunhajacaiu/static/css/app.min.css
-rm -vf cunhajacaiu/static/js/app.min.js
-rm -rfv cunhajacaiu/static/.webassets-cache
-rm -vf test.js 
+find . -iname '*.pyc' | xargs rm -v
+find . -iname '__pycache__' | xargs rm -r
+find elm-stuff -iname 'build-artifacts' | xargs rm -rfv
+find cunhajacaiu -iname '.webassets-cache' | xargs rm -rfv
+find cunhajacaiu -iname 'app.min.css' | xargs rm -v
+find cunhajacaiu -iname 'app.min.js' | xargs rm -v
+find tests -iname 'test.js' | xargs rm -v
