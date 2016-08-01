@@ -5,12 +5,15 @@
     "url": "git://github.com/cuducos/cunhajacaiu.git"
   },
   "scripts": {
-    "postinstall": "elm-package install --yes"
+    "postinstall": "elm-package install --yes",
+    "pretest" : "elm-make tests/frontend/Tests.elm --output test.js",
+    "test": "node test.js",
+    "posttest": "rm test.js"
   },
   "dependencies": {
     "bourbon": "^4.2.7",
     "bourbon-neat": "^1.8.0",
-    "elm": "^0.17.1",
+    "elm": "^0.17.0",
     "uglify-js": "^2.7.0"
   }
 }

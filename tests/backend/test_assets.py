@@ -1,4 +1,4 @@
-from tests import FlaskTestCase
+from tests.backend import FlaskTestCase
 import cunhajacaiu.assets
 
 

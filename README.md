@@ -18,8 +18,8 @@ Make sure you are working in an environment with:
 Install the dependencies:
 
 ```console
-pip install -r requirements.txt
-npm i
+$ pip install -r requirements.txt
+$ npm i
 ```
 
 ### Environmental variables
@@ -40,19 +40,22 @@ Set up your environmental variables (copy `.env.sample` as `.env` for example). 
 Now you can start your server. According to [Flask's new CLI](http://flask.pocoo.org/docs/0.11/cli/) set the `FLASK_APP` environment variable pointint to the entrypoint of the application and you're good to go:
 
 ```console
-export FLASK_APP=cunhajacaiu/__init__.py
-flask run
+$ export FLASK_APP=cunhajacaiu/__init__.py
+$ flask run
 ```
+
+
 
 ## Test, develop and contribute
 
-Tests are implemented with [Nose](https://nose.readthedocs.io/) and and _Pull Requests_ are always welcomed.
+_Pull Requests_ are always welcomed.
 
-First install some development dependencies then run the tests (optionally with [Coverage](https://coverage.readthedocs.org) and [rednose](https://github.com/JBKahn/rednose)):
+Running tests requires [Nose](https://nose.readthedocs.io/) and [elm-test](https://github.com/elm-community/elm-test) (but at this point they are already installed for you).
+
 
 ```console
-pip install -r requirements-dev.txt
-nosetests --rednose --with-cover --cover-html --cover-package cunhajacaiu
+$ nosetests
+$ npm test
 ```
 
 ## License
