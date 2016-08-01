@@ -1,0 +1,2 @@
+echo "export FLASK_APP=cunhajacaiu/__init__.py" >> $VIRTUAL_ENV/bin/postactivate
+echo "unset FLASK_APP" >> $VIRTUAL_ENV/bin/postdeactivate

@@ -44,6 +44,11 @@ $ export FLASK_APP=cunhajacaiu/__init__.py
 $ flask run
 ```
 
+You can configure your [virtualenv](http://virtualenv.readthedocs.io) to automatically export and unset `FLASK_APP` upon activation and deactivation. With your virtualenv activated:
+
+```console
+$ ./bin/flask_app
+```
 
 
 ## Test, develop and contribute
