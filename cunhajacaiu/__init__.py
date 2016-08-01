@@ -17,10 +17,10 @@ css_args = dict(filters=('libsass',),
 css_bundle = Bundle('sass/app.sass', **css_args)
 assets.register('css', css_bundle)
 
-elm = Bundle('elm/Main.elm', filters=('elm',))
-js_args = dict(filters=('uglifyjs',), output='js/app.min.js')
-js_bundle = Bundle(elm, Bundle('js/app.js'), **js_args)
-assets.register('js', js_bundle)
+elm = Bundle('elm/Main.elm',
+             filters=('elm', 'uglifyjs',),
+             output='js/app.min.js')
+assets.register('elm', elm)
 
 # add amazon s3 via flask-s3
 if app.config['FLASKS3_BUCKET_NAME'] and not app.debug:

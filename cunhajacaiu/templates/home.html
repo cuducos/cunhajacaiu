@@ -32,8 +32,14 @@
 
     <div id="elm"></div>
 
-    {% assets 'js' %}
+    {% assets 'elm' %}
     <script src="{{ ASSET_URL }}"></script>
+    <script>
+      var elmContainer = document.getElementById('elm');
+      var flags = {{ config.ELM_FLAGS|tojson }};
+      flags.now = Date.now();
+      if (elmContainer !== null) Elm.Main.embed(elmContainer, flags);
+    </script>
     {% endassets %}
 
     {% if config['GOOGLE_ANALYTICS'] %}

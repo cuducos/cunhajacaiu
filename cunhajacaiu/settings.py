@@ -17,3 +17,8 @@ AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY', default='')
 FLASKS3_REGION = config('FLASKS3_REGION', default='')
 FLASKS3_FORCE_MIMETYPE = True
 FLASK_ASSETS_USE_S3 = True if FLASKS3_BUCKET_NAME else False
+
+ELM_FLAGS = {
+    'fallen': config('FALLEN', default='False', cast=bool),
+    'voting': config('VOTING', default='2016-04-17T23:37:00-03:00')
+}

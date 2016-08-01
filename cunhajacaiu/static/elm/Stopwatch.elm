@@ -1,4 +1,4 @@
-module Stopwatch exposing (Model, Msg, toSeconds, toStopwatch, view)
+module Stopwatch exposing (Model, Msg, fromTime, toSeconds, view)
 
 import Html exposing (br, div, main', p, span, strong, text)
 import Html.Attributes exposing (class, id)
@@ -43,6 +43,11 @@ toStopwatch seconds =
     , minutes = (seconds % 3600) // 60
     , seconds = seconds % 60
     }
+
+
+fromTime : Float -> Float -> Model
+fromTime now start =
+    toStopwatch <| round <| (now - start) / 1000
 
 
 

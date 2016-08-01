@@ -28,20 +28,11 @@ type alias Model =
 
 initialModel : Model
 initialModel =
-    let
-        fallen =
-            False
-
-        voting =
-            Result.withDefault
-                (Date.fromTime 0)
-                (Date.fromString "2016-04-17T23:37:00-03:00")
-    in
-        { news = []
-        , stopwatch = Stopwatch.Model 0 0 0 0
-        , voting = voting
-        , fallen = fallen
-        }
+    { news = []
+    , stopwatch = Stopwatch.Model 0 0 0 0
+    , fallen = False
+    , voting = Date.fromTime 0
+    }
 
 
 
@@ -64,15 +55,12 @@ update msg model =
         LoadNewsSucceeded news ->
             ( { model | news = news }, Cmd.none )
 
-        Tick newTime ->
+        Tick now ->
             let
-                newStopwatch =
-                    Stopwatch.toStopwatch <|
-                        round <|
-                            (newTime - (Date.toTime model.voting))
-                                / 1000
+                stopwatch =
+                    Stopwatch.fromTime now (Date.toTime model.voting)
             in
-                ( { model | stopwatch = newStopwatch }, Cmd.none )
+                ( { model | stopwatch = stopwatch }, Cmd.none )
 
         _ ->
             ( model, Cmd.none )
@@ -171,6 +159,34 @@ subscriptions model =
 --
 
 
+type alias Flags =
+    { fallen : Bool
+    , voting : String
+    , now : Float
+    }
+
+
+init : Flags -> ( Model, Cmd Msg )
+init flags =
+    let
+        voting =
+            Result.withDefault
+                (Date.fromTime 0)
+                (Date.fromString flags.voting)
+
+        start =
+            Date.toTime voting
+
+        model =
+            { initialModel
+                | fallen = flags.fallen
+                , voting = voting
+                , stopwatch = Stopwatch.fromTime flags.now start
+            }
+    in
+        ( model, loadNews )
+
+
 loadNews : Cmd Msg
 loadNews =
     let
@@ -193,10 +209,10 @@ loadNews =
 --
 
 
-main : Program Never
+main : Program Flags
 main =
-    Html.App.program
-        { init = ( initialModel, loadNews )
+    Html.App.programWithFlags
+        { init = init
         , update = update
         , view = view
         , subscriptions = subscriptions

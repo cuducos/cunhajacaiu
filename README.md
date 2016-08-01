@@ -26,10 +26,17 @@ $ npm i
 
 Set up your environmental variables (copy `.env.sample` as `.env` for example). Optionally you can add:
 
+#### App settings
+
+* `FALLEN` (_default_: `False`) whether Cunha has fallen or not
+* `VOTING` (_default_: `2016-04-17T23:37:00-03:00`) when we were told he's gonna be the next to fall (date and time formatted according to ISO 8601)
 * `ELM_MAKE_BIN`: (_default_: `elm-make`) path to the `elm-make` binary from [Elm](http://elm-lang.org)
   (installed via `npm` by default)
 * `UGLIFYJS_BIN`: (_default_: `uglifyjs`) path to the `uglifyjs` binary from [UglifyJS2](https://github.com/mishoo/UglifyJS2)
   (installed via `npm` by default)
+
+#### Third party services
+
 * `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `FLASKS3_BUCKET_NAME`, `FLASKS3_REGION`, : Amazon S3 credentials to be consumed by [Flask-S3](https://flask-s3.readthedocs.io/)
 
 * `GOOGLE_ANALYTICS`: Google Analytics tracking code ID (e.g. `UA-XXXXXX-XX`)
@@ -37,11 +44,11 @@ Set up your environmental variables (copy `.env.sample` as `.env` for example). 
 
 ### Ready, set, go
 
-Now you can start your server. According to [Flask's new CLI](http://flask.pocoo.org/docs/0.11/cli/) set the `FLASK_APP` environment variable pointint to the entrypoint of the application and you're good to go:
+Following [Flask's new CLI](http://flask.pocoo.org/docs/0.11/cli/) set the `FLASK_APP` environment variable to the entrypoint of the app and you're good to go:
 
 ```console
 $ export FLASK_APP=cunhajacaiu/__init__.py
-$ flask run
+$ flask run --reload
 ```
 
 You can configure your [virtualenv](http://virtualenv.readthedocs.io) to automatically export and unset `FLASK_APP` upon activation and deactivation. With your virtualenv activated:
@@ -49,7 +56,6 @@ You can configure your [virtualenv](http://virtualenv.readthedocs.io) to automat
 ```console
 $ ./bin/flask_app
 ```
-
 
 ## Test, develop and contribute
 
