@@ -5,6 +5,9 @@ branches:
     - master
 python:
   - 3.5
+cache:
+  directories:
+    - elm-stuff/build-artifacts
 install:
   - npm install
   - pip install -r requirements.txt
