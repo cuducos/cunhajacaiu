@@ -1,5 +1,5 @@
 Flask==0.11.1
-Flask-Assets==0.11
+Flask-Assets==0.12
 flask-s3==0.3.1
 gunicorn==19.6.0
 libsass==0.11.1
