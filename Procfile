@@ -1,1 +1,1 @@
-web: gunicorn --log-file=- cunhajacaiu:app
+web: gunicorn --log-file=- cunhajacaiu:wsgi

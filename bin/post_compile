@@ -2,3 +2,4 @@
 
 echo "-----> Compiling and compressing assets"
 python -m cunhajacaiu.assets
+python -m whitenoise.compress cunhajacaiu/static

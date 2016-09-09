@@ -37,10 +37,7 @@ Set up your environmental variables (copy `.env.sample` as `.env` for example). 
 
 #### Third party services
 
-* `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `FLASKS3_BUCKET_NAME`, `FLASKS3_REGION`, : Amazon S3 credentials to be consumed by [Flask-S3](https://flask-s3.readthedocs.io/)
-
 * `GOOGLE_ANALYTICS`: Google Analytics tracking code ID (e.g. `UA-XXXXXX-XX`)
-
 
 ### Ready, set, go
 

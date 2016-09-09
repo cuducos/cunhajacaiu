@@ -6,7 +6,7 @@ class TestStylesheet(FlaskTestCase):
 
     def setUp(self):
         super().setUp()
-        self.resp = self.app.get('/static/css/app.min.css')
+        self.resp = self.app.get('/static/css/app.css')
 
     def test_status(self):
         self.assertEqual(200, self.resp.status_code)
@@ -19,7 +19,7 @@ class TestJavascript(FlaskTestCase):
 
     def setUp(self):
         super().setUp()
-        self.resp = self.app.get('/static/js/app.min.js')
+        self.resp = self.app.get('/static/js/app.js')
 
     def test_status(self):
         self.assertEqual(200, self.resp.status_code)
