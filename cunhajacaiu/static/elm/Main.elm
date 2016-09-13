@@ -83,7 +83,7 @@ viewQuestion fallen =
         answer =
             if fallen then
                 [ h2 [] [ text "Sim  :)" ]
-                , p [] [ text "Não definitivamente, mas pelo menos está afastado do cargo…" ]
+                , p [] [ text "Esperamos 148 dias, 0 horas, 19 minutos e 12 segundos." ]
                 ]
             else
                 [ div [] [ Image.responsive "/static/imgs/no.png" "Não" ] ]
