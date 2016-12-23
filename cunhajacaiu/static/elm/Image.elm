@@ -24,40 +24,55 @@ widths =
 
 getExtension : String -> String
 getExtension fileName =
-    Maybe.withDefault fileName <| List.head <| List.reverse <| String.split "." fileName
+    fileName
+        |> String.split "."
+        |> List.reverse
+        |> List.head
+        |> Maybe.withDefault fileName
 
 
 getNameWithoutExtension : String -> String
 getNameWithoutExtension fileName =
-    String.dropRight (String.length <| getExtension fileName) fileName
+    String.dropRight
+        (getExtension fileName |> String.length)
+        fileName
 
 
 responsiveFileName : String -> Int -> String
 responsiveFileName fileName size =
     let
         max =
-            Maybe.withDefault 0 <| List.head (List.reverse widths)
+            widths
+                |> List.reverse
+                |> List.head
+                |> Maybe.withDefault 0
     in
         if size == max then
             fileName
         else
-            getNameWithoutExtension fileName
-                ++ (toString size)
-                ++ "."
-                ++ getExtension fileName
+            String.concat
+                [ getNameWithoutExtension fileName
+                , toString size
+                , "."
+                , getExtension fileName
+                ]
 
 
 srcSetItem : String -> Int -> String
 srcSetItem fileName size =
-    (responsiveFileName fileName size)
-        ++ " "
-        ++ (toString size)
-        ++ "w"
+    String.concat
+        [ responsiveFileName fileName size
+        , " "
+        , (toString size)
+        , "w"
+        ]
 
 
 srcSet : List Int -> String -> String
 srcSet widths fileName =
-    String.join ", " <| List.map (srcSetItem fileName) widths
+    widths
+        |> List.map (srcSetItem fileName)
+        |> String.join ", "
 
 
 

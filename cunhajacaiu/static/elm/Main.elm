@@ -58,7 +58,9 @@ update msg model =
         Tick now ->
             let
                 stopwatch =
-                    Stopwatch.fromTime now (Date.toTime model.voting)
+                    model.voting
+                        |> Date.toTime
+                        |> Stopwatch.fromTime now
             in
                 ( { model | stopwatch = stopwatch }, Cmd.none )
 
@@ -89,7 +91,9 @@ viewQuestion fallen =
                 [ div [] [ Image.responsive "/static/imgs/no.png" "Não" ] ]
 
         contents =
-            List.append [ h1 [] [ text "Cunha já caiu?" ] ] answer
+            List.append
+                [ h1 [] [ text "Cunha já caiu?" ] ]
+                answer
     in
         header [] [ viewWrapper contents ]
 
@@ -122,7 +126,7 @@ viewFooter =
                 ]
             ]
     in
-        footer [] [ viewWrapper <| contents ]
+        footer [] [ viewWrapper contents ]
 
 
 view : Model -> Html.Html Msg

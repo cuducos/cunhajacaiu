@@ -14,4 +14,5 @@ newsItem =
 
 news : Json.Decoder (List News.Item)
 news =
-    Json.at [ "data", "children" ] (Json.list newsItem)
+    Json.list newsItem
+        |> Json.at [ "data", "children" ]

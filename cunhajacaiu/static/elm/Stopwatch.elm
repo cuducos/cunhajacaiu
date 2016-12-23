@@ -47,7 +47,10 @@ toStopwatch seconds =
 
 fromTime : Float -> Float -> Model
 fromTime now start =
-    toStopwatch <| round <| (now - start) / 1000
+    (now - start)
+        / 1000
+        |> round
+        |> toStopwatch
 
 
 
