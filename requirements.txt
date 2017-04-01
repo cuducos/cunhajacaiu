@@ -1,4 +1,4 @@
-Flask==0.12
+Flask==0.12.1
 Flask-Assets==0.12
 brotlipy==0.6.0
 gunicorn==19.6.0
