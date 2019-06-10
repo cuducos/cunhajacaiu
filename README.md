@@ -6,7 +6,7 @@
 
 Brazilian website counting the days to the fall of [Cunha](https://pt.wikipedia.org/wiki/Eduardo_Cunha): [www.cunhajacaiu.com.br](http://www.cunhajacaiu.com.br)
 
-![Screenshot](http://tatianasb.ru/assets/imgs/portfolio/web_site_CUNHA_full.jpg)
+![Screenshot](screenshot.jpg)
  
 ## Install
 
